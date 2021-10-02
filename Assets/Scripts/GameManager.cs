@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     public int blocksNum = 10;
     public Vector3 blockGenerateLoc = new Vector3(0, 3, 0);
     public BlockController[] blocks;
-    BlockController currentBlock;
+    [HideInInspector]
+    public BlockController currentBlock;
 
     // Start is called before the first frame update
     void Awake()
@@ -39,12 +40,16 @@ public class GameManager : MonoBehaviour
         
     }
 
+    int lastIndex;
     public void SwitchToNextBlock() {
         if (blocksNum <= 0)
             return;
 
         if (currentBlock == null || !currentBlock.isSuspending) {
             int curBlockIndex = Random.Range(0, blocks.Length - 1);
+            if (curBlockIndex == lastIndex)
+                curBlockIndex = Random.Range(0, blocks.Length - 1);
+            lastIndex = curBlockIndex;
             currentBlock = Instantiate(blocks[curBlockIndex], blockGenerateLoc, Quaternion.identity);
             blocksNum--;
         }

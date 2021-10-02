@@ -106,7 +106,7 @@ MonoBehaviour:
   moveLeftDist: 3
   moveRightDist: 3
   moveSpeed: 2
-  blockSprite: {fileID: 0}
+  blockSprite: {fileID: 1630964815771122976, guid: 0297db190e629c841a3b8a901d2b0599, type: 3}
   isSuspending: 1
 --- !u!1 &3332022773823792064
 GameObject:

@@ -40,7 +40,8 @@ public class BlockController : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        gm.SwitchToNextBlock();
+        if (this.Equals(gm.currentBlock))
+            gm.SwitchToNextBlock();
     }
 
     [HideInInspector]
