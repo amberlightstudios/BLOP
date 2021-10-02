@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3332022773781043590}
   - component: {fileID: 3332022773781043591}
   - component: {fileID: -4092684201548685616}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Z-Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 3332022773781043588}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: acd39a08e09750b1e83bdf8713bfabba, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -86,9 +86,9 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.1
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0af52d8097ac06be2a05de519821ebf0, type: 2}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &-4092684201548685616
@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockSprite: {fileID: 0}
+  isSuspending: 1
 --- !u!1 &3332022773823792064
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3332022773823792067}
   - component: {fileID: 3332022773823792066}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: block (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3332022774489055160}
   - component: {fileID: 3332022774489055163}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: block (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3332022774631386231}
   - component: {fileID: 3332022774631386230}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: block (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3332022775511965462}
   - component: {fileID: 3332022775511965457}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: block
   m_TagString: Untagged
   m_Icon: {fileID: 0}

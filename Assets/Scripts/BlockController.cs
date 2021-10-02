@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class BlockController : MonoBehaviour
 {
-    public Sprite blockSprite;
+    [SerializeField]
+    Sprite blockSprite;
+    [SerializeField]
+    GameManager gm;
+    
+    Rigidbody2D rb;
 
     private void Awake() {
         foreach (Transform child in transform)
@@ -12,17 +17,25 @@ public class BlockController : MonoBehaviour
             if (blockSprite != null)
                 child.GetComponent<SpriteRenderer>().sprite = blockSprite;
         }
+        rb = GetComponent<Rigidbody2D>();
+        Suspend();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void OnCollisionEnter2D(Collision2D other) {
+        gm.SwitchToNextBlock();
     }
 
-    // Update is called once per frame
-    void Update()
+    [HideInInspector]
+    public bool isSuspending = true;
+    void Suspend() 
     {
-        
+        isSuspending = true;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+    }
+
+    public void Release() 
+    {
+        isSuspending = false;
+        rb.constraints = RigidbodyConstraints2D.None;
     }
 }

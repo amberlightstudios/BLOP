@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3663353703081325282}
   - component: {fileID: 3663353703081325285}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3663353703165760076}
   - component: {fileID: 3663353703165760079}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: block (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3663353703274553731}
   - component: {fileID: 3663353703274553730}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: block (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 3663353704538174578}
   - component: {fileID: 3663353704538174579}
   - component: {fileID: -707708480900437082}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: T-Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 3663353704538174576}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: acd39a08e09750b1e83bdf8713bfabba, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -332,9 +332,9 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.1
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0af52d8097ac06be2a05de519821ebf0, type: 2}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &-707708480900437082
@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockSprite: {fileID: 0}
+  isSuspending: 1
 --- !u!1 &3663353704618626612
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3663353704618626615}
   - component: {fileID: 3663353704618626614}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: block (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
