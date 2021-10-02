@@ -37,7 +37,19 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        
+        #if DEBUG
+        if (Input.GetKeyDown(KeyCode.C)) {
+            foreach(GameObject block in GameObject.FindGameObjectsWithTag("Block")) {
+                Destroy(block);
+            }
+            currentBlock = null;
+            SwitchToNextBlock();
+        }
+        if (Input.GetKeyDown(KeyCode.R)) {
+            blocksNum += 10;
+            SwitchToNextBlock();
+        }
+        #endif
     }
 
     int lastIndex;
