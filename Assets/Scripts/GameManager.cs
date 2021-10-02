@@ -9,18 +9,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     float rotateSpeed = 0.1f;
 
+    public int blocksNum = 10;
+    public Vector3 blockGenerateLoc = new Vector3(0, 3, 0);
     public BlockController[] blocks;
     BlockController currentBlock;
-    int curBlockIndex = 0;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        foreach (BlockController block in blocks) {
-            block.gameObject.SetActive(false);
-        }
-        currentBlock = blocks[curBlockIndex];
-        currentBlock.gameObject.SetActive(true);
+        SwitchToNextBlock();
     }
 
     Vector2 mouseStart;
@@ -43,9 +40,13 @@ public class GameManager : MonoBehaviour
     }
 
     public void SwitchToNextBlock() {
-        if (curBlockIndex + 1 < blocks.Length && !currentBlock.isSuspending) {
-            currentBlock = blocks[++curBlockIndex];
-            currentBlock.gameObject.SetActive(true);
+        if (blocksNum <= 0)
+            return;
+
+        if (currentBlock == null || !currentBlock.isSuspending) {
+            int curBlockIndex = Random.Range(0, blocks.Length - 1);
+            currentBlock = Instantiate(blocks[curBlockIndex], blockGenerateLoc, Quaternion.identity);
+            blocksNum--;
         }
     }
 }

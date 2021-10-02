@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1674027770515106928}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,11 +44,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  rotationRatio: 20
+  rotateSpeed: 100
+  blockGenerateLoc: {x: 0, y: 3, z: 0}
   blocks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4218530547914217295, guid: e1068616366270cc6b9e9623260e64da, type: 3}
+  - {fileID: 6744186833877787284, guid: 10eb9b5a4352999609c9aab6e1fb9047, type: 3}
+  - {fileID: 3560706275310444023, guid: 990f764c88cd67dcf87991706a13ea8b, type: 3}
+  - {fileID: -7563394951718556790, guid: 6e8f8aebf0ff87beea82b814aa888d88, type: 3}
+  - {fileID: -6094796600576690615, guid: 51e789044b8498f9098fcd5573f87d6f, type: 3}
+  - {fileID: -707708480900437082, guid: b895fa09880aa7b588d8de7dea299a05, type: 3}
+  - {fileID: -4092684201548685616, guid: 91b8e9e970122616881a10fc777c0621, type: 3}
