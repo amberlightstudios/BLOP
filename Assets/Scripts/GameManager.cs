@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public BlockController[] blocks;
     [HideInInspector]
     public BlockController currentBlock;
+    BlockController nextBlock;
+    public BlockController NextBlock { get { return nextBlock; } }
 
     // Start is called before the first frame update
     void Awake()
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour
                 Destroy(block);
             }
             currentBlock = null;
+            if (blocksNum == 0) blocksNum++;
             SwitchToNextBlock();
         }
         if (Input.GetKeyDown(KeyCode.R)) {
@@ -52,18 +55,38 @@ public class GameManager : MonoBehaviour
         #endif
     }
 
-    int lastIndex;
+    int currentIndex;
     public void SwitchToNextBlock() {
         if (blocksNum <= 0)
             return;
 
-        if (currentBlock == null || !currentBlock.isSuspending) {
-            int curBlockIndex = Random.Range(0, blocks.Length - 1);
-            if (curBlockIndex == lastIndex)
-                curBlockIndex = Random.Range(0, blocks.Length - 1);
-            lastIndex = curBlockIndex;
-            currentBlock = Instantiate(blocks[curBlockIndex], blockGenerateLoc, Quaternion.identity);
+        if (currentBlock == null) {
+            currentIndex = Random.Range(0, blocks.Length - 1);
+            currentBlock = Instantiate(blocks[currentIndex], blockGenerateLoc, Quaternion.identity);
+            if (blocksNum >= 2) {
+                int nextBlockIndex = Random.Range(0, blocks.Length - 1);
+                if (nextBlockIndex == currentIndex)
+                    nextBlockIndex = Random.Range(0, blocks.Length - 1);
+                nextBlock = blocks[nextBlockIndex];
+                Debug.Log(NextBlock);
+            }
             blocksNum--;
         }
+
+        else if (nextBlock != null && !currentBlock.isSuspending) {
+            int nextBlockIndex = Random.Range(0, blocks.Length - 1);
+            if (nextBlockIndex == currentIndex)
+                nextBlockIndex = Random.Range(0, blocks.Length - 1);
+            currentBlock = Instantiate(nextBlock, blockGenerateLoc, Quaternion.identity);
+            currentIndex = nextBlockIndex;
+            if (blocksNum > 1) {
+                nextBlock = blocks[nextBlockIndex];
+            } else {
+                nextBlock = null;
+            }
+            blocksNum--;
+        }
+
+        
     }
 }
