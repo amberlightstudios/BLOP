@@ -79,7 +79,7 @@ SpriteRenderer:
   m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &9066133226654528806
@@ -161,7 +161,7 @@ SpriteRenderer:
   m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &9066133227253467751
@@ -243,7 +243,7 @@ SpriteRenderer:
   m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &9066133227568499758
@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 9066133227568499795}
   - component: {fileID: 9066133227568499756}
   - component: {fileID: 9066133227568499757}
+  - component: {fileID: -3040446076303769741}
   m_Layer: 0
   m_Name: J-Block
   m_TagString: Untagged
@@ -334,6 +335,19 @@ PolygonCollider2D:
       - {x: 0.25, y: 0.25}
       - {x: 0.75, y: 0.25}
       - {x: 0.75, y: 0.75}
+--- !u!114 &-3040446076303769741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9066133227568499758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a318e7d865e1f572c9b7eb8eab87b29b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockSprite: {fileID: 0}
 --- !u!1 &9066133228037413960
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,6 +427,6 @@ SpriteRenderer:
   m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

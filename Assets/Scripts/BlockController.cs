@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockManager : MonoBehaviour
+public class BlockController : MonoBehaviour
 {
     public Sprite blockSprite;
 

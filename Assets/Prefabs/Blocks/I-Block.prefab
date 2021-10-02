@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1811580531064367382, guid: 0297db190e629c841a3b8a901d2b0599, type: 3}
+  m_Sprite: {fileID: -1219841102191821512, guid: 0297db190e629c841a3b8a901d2b0599, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 2025227818833107249}
   - component: {fileID: 2025227818833107254}
   - component: {fileID: 2025227818833107255}
+  - component: {fileID: 4218530547914217295}
   m_Layer: 0
   m_Name: I-Block
   m_TagString: Untagged
@@ -168,6 +169,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4218530547914217295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025227818833107252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a318e7d865e1f572c9b7eb8eab87b29b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockSprite: {fileID: 0}
 --- !u!1 &2025227819542908100
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +253,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1811580531064367382, guid: 0297db190e629c841a3b8a901d2b0599, type: 3}
+  m_Sprite: {fileID: -1219841102191821512, guid: 0297db190e629c841a3b8a901d2b0599, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -321,7 +335,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1811580531064367382, guid: 0297db190e629c841a3b8a901d2b0599, type: 3}
+  m_Sprite: {fileID: -1219841102191821512, guid: 0297db190e629c841a3b8a901d2b0599, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -403,7 +417,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1811580531064367382, guid: 0297db190e629c841a3b8a901d2b0599, type: 3}
+  m_Sprite: {fileID: -1219841102191821512, guid: 0297db190e629c841a3b8a901d2b0599, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

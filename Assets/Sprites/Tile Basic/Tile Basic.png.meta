@@ -5,6 +5,18 @@ TextureImporter:
   - first:
       213: -1811580531064367382
     second: Tile Basic0
+  - first:
+      213: -1219841102191821512
+    second: Tile Basic_0
+  - first:
+      213: -7534805255453887458
+    second: Tile Basic_1
+  - first:
+      213: -6935928660373836128
+    second: Tile Basic_2
+  - first:
+      213: 1630964815771122976
+    second: Tile Basic_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -82,7 +94,49 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tile Basic0
+      name: Tile Basic_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 11
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83d7f650bf0421fe0800000000000000
+      internalID: -1219841102191821512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile Basic_1
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 11
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e14bce09a8efe6790800000000000000
+      internalID: -7534805255453887458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile Basic_2
       rect:
         serializedVersion: 2
         x: 1
@@ -90,14 +144,35 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ae615ebea19fbd6e0800000000000000
-      internalID: -1811580531064367382
+      spriteID: 0ae67faa1a1aebf90800000000000000
+      internalID: -6935928660373836128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile Basic_3
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 1
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02db235dbd952a610800000000000000
+      internalID: 1630964815771122976
       vertices: []
       indices: 
       edges: []
