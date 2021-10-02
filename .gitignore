@@ -9,9 +9,14 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/[Ss]creenshots/
 
-# Asset meta data should only be ignored when the corresponding asset is also ignored
+# Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
+
+# Ignore aseprite files (for local dev only)
+*.aseprite.meta
+*.aseprite
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
@@ -57,4 +62,10 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+# Testing scene
+Assets/Scenes/Testing.unity
+Assets/Scenes/Testing.unity.meta
+Assets/Scenes/LocalScene.unity
+Assets/Scenes/LocalScene.unity.meta
 
