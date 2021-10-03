@@ -19,7 +19,7 @@ public class CamController : MonoBehaviour
     float goalLineHeight { get { return btmPos + 2 * cam.orthographicSize * targetToHeightRatio; } }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         cam = Camera.main;
         platformDistFromBtm = platform.transform.position.y - btmPos;
@@ -35,5 +35,9 @@ public class CamController : MonoBehaviour
         cam.transform.position += new Vector3(0, dist2Btm - platformDistFromBtm, 0);
         Vector3 tpos = goalLineInstance.position;
         goalLineInstance.position = new Vector3(tpos.x, goalLineHeight, 0);
+    }
+
+    public Vector3 CamRatioHeight(float ratio) {
+        return new Vector3(0, btmPos + 2 * ratio * cam.orthographicSize, 0);
     }
 }

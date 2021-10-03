@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject preview;
     public GameObject hold;
+    CamController cam;
 
     public Text scoreLabel;
     public Text blocksNumLabel;
@@ -13,7 +14,8 @@ public class GameManager : MonoBehaviour
     float rotateSpeed = 0.1f;
 
     public int blocksNum = 10;
-    public Vector3 blockGenerateLoc = new Vector3(0, 3, 0);
+    public float generatHeight2ScreenH = 0.7f;
+    Vector3 blockGenerateLoc { get { return cam.CamRatioHeight(generatHeight2ScreenH); } }
     public BlockController[] blocks;
 
     [HideInInspector]
@@ -21,17 +23,15 @@ public class GameManager : MonoBehaviour
     BlockController nextBlock;
     BlockController previewBlock;
 
-    CamController cam;
     Timer timer;
 
-    void Awake()
-    {
-        SwitchToNextBlock();
+    private void Awake() {
+        cam = Camera.main.GetComponent<CamController>();
+        timer = GameObject.Find("TimerComponent").GetComponent<Timer>();
     }
 
     private void Start() {
-        cam = Camera.main.GetComponent<CamController>();
-        timer = GameObject.Find("TimerComponent").GetComponent<Timer>();
+        SwitchToNextBlock();
         // TODO: add countdown before init timer
         timer.StartTimer();
         InvokeRepeating(nameof(Score), 0.5f, 1f);
@@ -73,6 +73,12 @@ public class GameManager : MonoBehaviour
             currentBlock = Instantiate(blocks[0], blockGenerateLoc, Quaternion.identity);
         }
         #endif
+    }
+
+    private void FixedUpdate() {
+        if (currentBlock.transform.position.y < cam.btmPos) {
+            SwitchToNextBlock();
+        }
     }
 
     int Score() {
