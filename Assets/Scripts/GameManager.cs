@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
             if (block.transform.position.y < cam.btmPos) 
                 Destroy(block);
             
-            if (block.GetComponent<Rigidbody2D>().velocity.magnitude < 0.2f && !block.GetComponent<BlockController>().isSuspending) {
+            if (!block.GetComponent<BlockController>().isSuspending) {
                 score++;
             }
         }
