@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CamController : MonoBehaviour
 {
+    public GameManager gm;
     public float targetToHeightRatio = 0.5f;
     [SerializeField]
     GameObject goalLine;
@@ -38,8 +39,11 @@ public class CamController : MonoBehaviour
         float dist2Btm = platform.transform.position.y - btmPos;
         cam.transform.position += new Vector3(0, dist2Btm - platformDistFromBtm, 0);
         Vector3 tpos = goalLineInstance.position;
+        targetToHeightRatio *= 1.1f;
+        gm.generateHeight2ScreenH *= 1.1f;
         goalLineInstance.position = new Vector3(tpos.x, goalLineHeight, 0);
         timer.AddTime(10);
+        gm.RefillBlocks(10);
     }
 
     public Vector3 CamRatioHeight(float ratio) {

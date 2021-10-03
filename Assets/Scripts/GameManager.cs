@@ -148,4 +148,8 @@ public class GameManager : MonoBehaviour
         currentIndex = nextBlockIndex;
         nextBlockIndex = temp;
     }
+
+    public void RefillBlocks(int refillNum) {
+        blocksNum += refillNum;
+    }
 }
