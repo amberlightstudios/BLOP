@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour
     public float timeStart = 60;
     public Text textBox;
 
-    bool active;
+    public bool active { get; set; }
 
 	void Start ()
     {
@@ -16,6 +16,10 @@ public class Timer : MonoBehaviour
 	
 	void Update ()
     {
+        if (timeStart <= 0) {
+            StopTimer();
+            // TODO: do we end level, or just no time bonus?
+        }
         if (!active) return;
         timeStart -= Time.deltaTime;
         textBox.text = Math.Round((decimal) timeStart, 1).ToString();
@@ -29,5 +33,10 @@ public class Timer : MonoBehaviour
     public void StopTimer()
     {
         active = false;
+    }
+
+    public void AddTime(int seconds)
+    {
+        timeStart += seconds;
     }
 }

@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
     float rotateSpeed = 0.1f;
 
     public int blocksNum = 10;
-    public float generatHeight2ScreenH = 0.7f;
-    Vector3 blockGenerateLoc { get { return cam.CamRatioHeight(generatHeight2ScreenH); } }
+    public float generateHeight2ScreenH = 0.7f;
+    Vector3 blockGenerateLoc { get { return cam.CamRatioHeight(generateHeight2ScreenH); } }
     public BlockController[] blocks;
 
     [HideInInspector]
@@ -76,9 +76,9 @@ public class GameManager : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if (currentBlock.transform.position.y < cam.btmPos) {
-            SwitchToNextBlock();
-        }
+        try {
+            if (currentBlock.transform.position.y < cam.btmPos)   SwitchToNextBlock();
+        } catch {}
     }
 
     int Score() {
