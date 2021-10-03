@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Block
   - GameManager
+  - Preview
   layers:
   - Default
   - TransparentFX
@@ -40,12 +41,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: UI
-    uniqueID: 3285720979
+  - name: BG
+    uniqueID: 156390173
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BG
-    uniqueID: 156390173
+  - name: UI
+    uniqueID: 3285720979
     locked: 0
