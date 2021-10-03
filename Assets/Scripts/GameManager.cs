@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Camera cam;
     public GameObject preview;
+    public Text scoreLabel;
 
     [SerializeField]
     float rotateSpeed = 0.1f;
-
-    public float targetHeight;
-    [SerializeField]
-    GameObject goalLine;
 
     public int blocksNum = 10;
     public Vector3 blockGenerateLoc = new Vector3(0, 3, 0);
@@ -22,10 +17,16 @@ public class GameManager : MonoBehaviour
     BlockController nextBlock;
     BlockController previewBlock;
 
+    CamController cam;
+
     void Awake()
     {
-        Instantiate(goalLine, new Vector3(0, targetHeight, 0), Quaternion.identity);
         SwitchToNextBlock();
+    }
+
+    private void Start() {
+        cam = Camera.main.GetComponent<CamController>();
+        InvokeRepeating(nameof(Score), 0.5f, 1f);
     }
 
     void Update()
@@ -59,6 +60,20 @@ public class GameManager : MonoBehaviour
             SwitchCurrentAndNext();
         }
         #endif
+    }
+
+    int Score() {
+        int score = 0;
+        foreach (GameObject block in GameObject.FindGameObjectsWithTag("Block")) {
+            if (block.transform.position.y < cam.btmPos) 
+                Destroy(block);
+            
+            if (block.GetComponent<Rigidbody2D>().velocity.magnitude < 0.2f && !block.GetComponent<BlockController>().isSuspending) {
+                score++;
+            }
+        }
+        scoreLabel.text = score.ToString();
+        return score;
     }
 
     int currentIndex, nextBlockIndex;

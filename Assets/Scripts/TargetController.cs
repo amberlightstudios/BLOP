@@ -10,12 +10,19 @@ public class TargetController : MonoBehaviour
         coll = GetComponent<Collider2D>();
     }
 
+    private void Update() {
+        #if DEBUG
+        if (Input.GetKeyDown(KeyCode.T)) {
+            Camera.main.GetComponent<CamController>().IncreaseCamSize();
+        }
+        #endif
+    }
+
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.layer == blocksLayer) {
             float speed = other.GetComponent<Rigidbody2D>().velocity.magnitude;
             if (speed < 0.05f) {
-                Debug.Log("Reached Target");
-                transform.position += new Vector3(0, 5, 0);
+                Camera.main.GetComponent<CamController>().IncreaseCamSize();
             }
         }
     }
