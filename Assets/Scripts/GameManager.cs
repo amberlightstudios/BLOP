@@ -68,6 +68,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S)) {
             SwitchCurrentAndNext();
         }
+        if (Input.GetKeyDown(KeyCode.I)) {
+            Destroy(currentBlock.gameObject);
+            currentBlock = Instantiate(blocks[0], blockGenerateLoc, Quaternion.identity);
+        }
         #endif
     }
 
