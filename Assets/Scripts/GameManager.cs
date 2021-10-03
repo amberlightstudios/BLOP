@@ -10,16 +10,21 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     float rotateSpeed = 0.1f;
 
+    public float targetHeight;
+    [SerializeField]
+    GameObject goalLine;
+
     public int blocksNum = 10;
     public Vector3 blockGenerateLoc = new Vector3(0, 3, 0);
     public BlockController[] blocks;
-    // [HideInInspector]
+    [HideInInspector]
     public BlockController currentBlock;
-    public BlockController nextBlock;
+    BlockController nextBlock;
     BlockController previewBlock;
 
     void Awake()
     {
+        Instantiate(goalLine, new Vector3(0, targetHeight, 0), Quaternion.identity);
         SwitchToNextBlock();
     }
 

@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
+  preview: {fileID: 0}
   rotateSpeed: 100
+  targetHeight: 0
+  goalLine: {fileID: 404261272006145848, guid: 8c212d4d2f77b1ea7a4212de365eae14, type: 3}
+  blocksNum: 10
   blockGenerateLoc: {x: 0, y: 3, z: 0}
   blocks:
   - {fileID: 4218530547914217295, guid: e1068616366270cc6b9e9623260e64da, type: 3}
@@ -54,3 +58,4 @@ MonoBehaviour:
   - {fileID: -6094796600576690615, guid: 51e789044b8498f9098fcd5573f87d6f, type: 3}
   - {fileID: -707708480900437082, guid: b895fa09880aa7b588d8de7dea299a05, type: 3}
   - {fileID: -4092684201548685616, guid: 91b8e9e970122616881a10fc777c0621, type: 3}
+  currentBlock: {fileID: 0}
