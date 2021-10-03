@@ -4,8 +4,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject preview;
-    public Text scoreLabel;
     public GameObject hold;
+
+    public Text scoreLabel;
+    public Text blocksNumLabel;
 
     [SerializeField]
     float rotateSpeed = 0.1f;
@@ -67,9 +69,8 @@ public class GameManager : MonoBehaviour
     int Score() {
         int score = 0;
         foreach (GameObject block in GameObject.FindGameObjectsWithTag("Block")) {
-            if (block.transform.position.y < cam.btmPos) 
-                Destroy(block);
-            
+            if (block.transform.position.y < cam.btmPos) Destroy(block);
+
             if (!block.GetComponent<BlockController>().isSuspending) {
                 score++;
             }
@@ -118,6 +119,7 @@ public class GameManager : MonoBehaviour
             previewBlock = Instantiate(nextBlock, preview.transform.position, Quaternion.identity);
             previewBlock.ActivatePreview();
         }
+        blocksNumLabel.text = blocksNum.ToString();
     }
 
     public void SwitchCurrentAndNext() {
