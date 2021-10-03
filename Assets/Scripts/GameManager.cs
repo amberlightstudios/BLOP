@@ -13,9 +13,9 @@ public class GameManager : MonoBehaviour
     public int blocksNum = 10;
     public Vector3 blockGenerateLoc = new Vector3(0, 3, 0);
     public BlockController[] blocks;
-    [HideInInspector]
+    // [HideInInspector]
     public BlockController currentBlock;
-    BlockController nextBlock;
+    public BlockController nextBlock;
     BlockController previewBlock;
 
     void Awake()
@@ -50,10 +50,13 @@ public class GameManager : MonoBehaviour
             blocksNum += 10;
             SwitchToNextBlock();
         }
+        if (Input.GetKeyDown(KeyCode.S)) {
+            SwitchCurrentAndNext();
+        }
         #endif
     }
 
-    int currentIndex;
+    int currentIndex, nextBlockIndex;
     public void SwitchToNextBlock() {
         if (blocksNum <= 0) return;
 
@@ -61,7 +64,7 @@ public class GameManager : MonoBehaviour
             currentIndex = Random.Range(0, blocks.Length - 1);
             currentBlock = Instantiate(blocks[currentIndex], blockGenerateLoc, Quaternion.identity);
             if (blocksNum >= 2) {
-                int nextBlockIndex = Random.Range(0, blocks.Length - 1);
+                nextBlockIndex = Random.Range(0, blocks.Length - 1);
                 if (nextBlockIndex == currentIndex)
                     nextBlockIndex = Random.Range(0, blocks.Length - 1);
                 nextBlock = blocks[nextBlockIndex];
@@ -70,7 +73,7 @@ public class GameManager : MonoBehaviour
         }
 
         else if (nextBlock != null && !currentBlock.isSuspending) {
-            int nextBlockIndex = Random.Range(0, blocks.Length - 1);
+            nextBlockIndex = Random.Range(0, blocks.Length - 1);
             if (nextBlockIndex == currentIndex)
                 nextBlockIndex = Random.Range(0, blocks.Length - 1);
             currentBlock = Instantiate(nextBlock, blockGenerateLoc, Quaternion.identity);
@@ -95,5 +98,17 @@ public class GameManager : MonoBehaviour
             previewBlock = Instantiate(nextBlock, preview.transform.position, Quaternion.identity);
             previewBlock.ActivatePreview();
         }
+    }
+
+    public void SwitchCurrentAndNext() {
+        if (nextBlock == null) 
+            return;
+        int temp = currentIndex;
+        Transform transformCur = currentBlock.transform;
+        Destroy(currentBlock.gameObject);
+        currentBlock = Instantiate(nextBlock, blockGenerateLoc, Quaternion.identity);
+        nextBlock = blocks[currentIndex];
+        currentIndex = nextBlockIndex;
+        nextBlockIndex = temp;
     }
 }
