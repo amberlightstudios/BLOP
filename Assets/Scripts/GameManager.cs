@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject preview;
     public Text scoreLabel;
+    public GameObject hold;
 
     [SerializeField]
     float rotateSpeed = 0.1f;
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int blocksNum = 10;
     public Vector3 blockGenerateLoc = new Vector3(0, 3, 0);
     public BlockController[] blocks;
+
     [HideInInspector]
     public BlockController currentBlock;
     BlockController nextBlock;
@@ -111,18 +113,15 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePreview()
     {
+        if (previewBlock != null)  previewBlock.DestroySelf();
         if (nextBlock != null) {
-            if (previewBlock != null) {
-                previewBlock.DestroySelf();
-            }
             previewBlock = Instantiate(nextBlock, preview.transform.position, Quaternion.identity);
             previewBlock.ActivatePreview();
         }
     }
 
     public void SwitchCurrentAndNext() {
-        if (nextBlock == null) 
-            return;
+        if (nextBlock == null) return;
         int temp = currentIndex;
         Transform transformCur = currentBlock.transform;
         Destroy(currentBlock.gameObject);
