@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Camera cam;
-    
+    public GameObject preview;
+
     [SerializeField]
     float rotateSpeed = 0.1f;
 
@@ -15,16 +16,13 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public BlockController currentBlock;
     BlockController nextBlock;
-    public BlockController NextBlock { get { return nextBlock; } }
+    BlockController previewBlock;
 
-    // Start is called before the first frame update
     void Awake()
     {
         SwitchToNextBlock();
     }
 
-    Vector2 mouseStart;
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow)) {
@@ -57,8 +55,7 @@ public class GameManager : MonoBehaviour
 
     int currentIndex;
     public void SwitchToNextBlock() {
-        if (blocksNum <= 0)
-            return;
+        if (blocksNum <= 0) return;
 
         if (currentBlock == null) {
             currentIndex = Random.Range(0, blocks.Length - 1);
@@ -68,7 +65,6 @@ public class GameManager : MonoBehaviour
                 if (nextBlockIndex == currentIndex)
                     nextBlockIndex = Random.Range(0, blocks.Length - 1);
                 nextBlock = blocks[nextBlockIndex];
-                Debug.Log(NextBlock);
             }
             blocksNum--;
         }
@@ -87,6 +83,17 @@ public class GameManager : MonoBehaviour
             blocksNum--;
         }
 
-        
+        UpdatePreview();
+    }
+
+    public void UpdatePreview()
+    {
+        if (nextBlock != null) {
+            if (previewBlock != null) {
+                previewBlock.DestroySelf();
+            }
+            previewBlock = Instantiate(nextBlock, preview.transform.position, Quaternion.identity);
+            previewBlock.ActivatePreview();
+        }
     }
 }

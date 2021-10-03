@@ -13,6 +13,7 @@ public class BlockController : MonoBehaviour
     Sprite blockSprite;
     GameManager gm;
     Rigidbody2D rb;
+    Collider2D coll;
 
     private void Awake() {
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -22,6 +23,7 @@ public class BlockController : MonoBehaviour
                 child.GetComponent<SpriteRenderer>().sprite = blockSprite;
         }
         rb = GetComponent<Rigidbody2D>();
+        coll = GetComponent<PolygonCollider2D>();
         Suspend();
     }
 
@@ -59,6 +61,19 @@ public class BlockController : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.None;
     }
 
+    public void ActivatePreview()
+    {
+        // Freeze, shrink, and disable collider on block
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+        coll.enabled = false;
+    }
+
+    public void DestroySelf()
+    {
+        Destroy(this.gameObject);
+    }
+
     private void OnDrawGizmos() {
         try {
             Gizmos.DrawLine(dstLeft, dstRight);
@@ -67,6 +82,5 @@ public class BlockController : MonoBehaviour
             Vector2 dstRight = transform.position + new Vector3(moveRightDist, 0, 0);
             Gizmos.DrawLine(dstLeft, dstRight);
         }
-        
     }
 }
