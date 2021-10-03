@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     BlockController previewBlock;
 
     CamController cam;
+    Timer timer;
 
     void Awake()
     {
@@ -30,6 +31,9 @@ public class GameManager : MonoBehaviour
 
     private void Start() {
         cam = Camera.main.GetComponent<CamController>();
+        timer = GameObject.Find("TimerComponent").GetComponent<Timer>();
+        // TODO: add countdown before init timer
+        timer.StartTimer();
         InvokeRepeating(nameof(Score), 0.5f, 1f);
     }
 
@@ -38,7 +42,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow)) {
             currentBlock.Release();
         }
-        
         else if (currentBlock.isSuspending) {
             if (Input.GetKey(KeyCode.LeftArrow)) {
                 currentBlock.transform.Rotate(0, 0, Time.deltaTime * rotateSpeed);
@@ -46,6 +49,8 @@ public class GameManager : MonoBehaviour
                 currentBlock.transform.Rotate(0, 0, -Time.deltaTime * rotateSpeed);
             }
         }
+
+        if (nextBlock == null && !currentBlock.isSuspending) timer.StopTimer();
 
         #if DEBUG
         if (Input.GetKeyDown(KeyCode.C)) {
@@ -122,6 +127,7 @@ public class GameManager : MonoBehaviour
         blocksNumLabel.text = blocksNum.ToString();
     }
 
+    // TODO: need to fix this bug before UI. maybe this should just be removed
     public void SwitchCurrentAndNext() {
         if (nextBlock == null) return;
         int temp = currentIndex;
