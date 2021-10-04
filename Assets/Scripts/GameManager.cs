@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
         // (BACKLOG for post jam): add countdown before init timer 
         // TODO: create blit tutorial before starting
         timer.StartTimer();
-        // InvokeRepeating(nameof(Score), 0.5f, 1f);
     }
 
     void Update()
@@ -146,6 +145,7 @@ public class GameManager : MonoBehaviour
         score += 500 * currentLevel;
         baseScore += 500 * currentLevel;
         scoreMultiplier += 0.37f;
+        scoreLabel.text = score.ToString();
         if (currentBlock.isSuspending) {
             currentBlock.transform.position = new Vector3(currentBlock.transform.position.x, 
                                                         blockGenerateLoc.y, 0);
