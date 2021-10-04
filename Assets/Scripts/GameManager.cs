@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject preview;
-    public GameObject hold;
-    CamController cam;
+    public int currentLevel = 1;
 
+    public GameObject preview;
+// TODO: create levels for demo (BACKLOGGED to post-jam plans)
+    public Text levelLabel;
     public Text scoreLabel;
     public Text blocksNumLabel;
 
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     BlockController nextBlock;
     BlockController previewBlock;
 
+    CamController cam;
     Timer timer;
 
     private void Awake() {
@@ -32,7 +34,8 @@ public class GameManager : MonoBehaviour
 
     private void Start() {
         SwitchToNextBlock();
-        // TODO: add countdown before init timer
+        // (BACKLOG for post jam): add countdown before init timer 
+        // TODO: create blit tutorial before starting
         timer.StartTimer();
         InvokeRepeating(nameof(Score), 0.5f, 1f);
     }
@@ -65,9 +68,6 @@ public class GameManager : MonoBehaviour
             blocksNum += 10;
             SwitchToNextBlock();
         }
-        if (Input.GetKeyDown(KeyCode.S)) {
-            SwitchCurrentAndNext();
-        }
         if (Input.GetKeyDown(KeyCode.I)) {
             Destroy(currentBlock.gameObject);
             currentBlock = Instantiate(blocks[0], blockGenerateLoc, Quaternion.identity);
@@ -77,21 +77,8 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate() {
         try {
-            if (currentBlock.transform.position.y < cam.btmPos)   SwitchToNextBlock();
+            if (currentBlock.transform.position.y < cam.btmPos) SwitchToNextBlock();
         } catch {}
-    }
-
-    int Score() {
-        int score = 0;
-        foreach (GameObject block in GameObject.FindGameObjectsWithTag("Block")) {
-            if (block.transform.position.y < cam.btmPos) Destroy(block);
-
-            if (!block.GetComponent<BlockController>().isSuspending) {
-                score++;
-            }
-        }
-        scoreLabel.text = score.ToString();
-        return score;
     }
 
     int currentIndex, nextBlockIndex;
@@ -124,10 +111,43 @@ public class GameManager : MonoBehaviour
             blocksNum--;
         }
 
-        UpdatePreview();
+        UpdateBlocksUI();
     }
 
-    public void UpdatePreview()
+    // TODO: make scoring system juicier - refer to notes (level)
+    int score = 0;
+    int Score() {
+        int scoreCur = 0;
+        foreach (GameObject block in GameObject.FindGameObjectsWithTag("Block")) {
+            if (block.transform.position.y < cam.btmPos) Destroy(block);
+
+            if (!block.GetComponent<BlockController>().isSuspending) {
+                scoreCur += 100;
+            }
+        }
+        if (score < scoreCur) {
+            score = scoreCur;
+            scoreLabel.text = score.ToString();
+        }
+        return score;
+    }
+
+    public void ChangeScore(int changedAmount) {
+        score += changedAmount;
+        scoreLabel.text = score.ToString();
+    }
+
+    // TODO: figure out a fair amount to increase the new level by each turn and time   
+    public void UpdateLevelSettings()
+    {
+        currentLevel++;
+
+        RefillBlocks(5 * currentLevel);
+        timer.AddTime(30 * currentLevel);
+        levelLabel.text = "Level " + currentLevel;
+    }
+
+    public void UpdateBlocksUI()
     {
         if (previewBlock != null)  previewBlock.DestroySelf();
         if (nextBlock != null) {
@@ -137,16 +157,12 @@ public class GameManager : MonoBehaviour
         blocksNumLabel.text = blocksNum.ToString();
     }
 
-    // TODO: need to fix this bug before UI. maybe this should just be removed
-    public void SwitchCurrentAndNext() {
-        if (nextBlock == null) return;
-        int temp = currentIndex;
-        Transform transformCur = currentBlock.transform;
-        Destroy(currentBlock.gameObject);
-        currentBlock = Instantiate(nextBlock, blockGenerateLoc, Quaternion.identity);
-        nextBlock = blocks[currentIndex];
-        currentIndex = nextBlockIndex;
-        nextBlockIndex = temp;
+    // TODO: game over when blocks fall off (height of blocks lower than last checkpoint)- report results to player
+    // TODO: implement transition to game results screen with option to replay
+    public void EndGame()
+    {
+        Time.timeScale = 0;
+        Debug.Log("Message! : Your total score was ");
     }
 
     public void RefillBlocks(int refillNum) {

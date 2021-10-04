@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
     {
         if (timeStart <= 0) {
             StopTimer();
-            // TODO: do we end level, or just no time bonus?
+            // TODO: End level (Time's Up! Final Score) need a gm instance
         }
         if (!active) return;
         timeStart -= Time.deltaTime;

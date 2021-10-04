@@ -41,6 +41,8 @@ public class BlockController : MonoBehaviour
             rb.velocity = new Vector2(moveSpeed, 0);
     }
 
+// TODO: add floating text to indicate score adding when block sits
+// TODO: add negative numbers when the block falls out of screen
     private void OnCollisionEnter2D(Collision2D other) {
         if (this.Equals(gm.currentBlock))
             gm.SwitchToNextBlock();

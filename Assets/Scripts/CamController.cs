@@ -17,7 +17,6 @@ public class CamController : MonoBehaviour
     float platformDistFromBtm;
 
     Camera cam;
-    Timer timer;
 
     public float btmPos { get { return transform.position.y - cam.orthographicSize; } }
     float goalLineHeight { get { return btmPos + 2 * cam.orthographicSize * targetToHeightRatio; } }
@@ -26,15 +25,12 @@ public class CamController : MonoBehaviour
     void Awake()
     {
         cam = Camera.main;
-        timer = GameObject.Find("TimerComponent").GetComponent<Timer>();
         platformDistFromBtm = platform.transform.position.y - btmPos;
         goalLineInstance = Instantiate(goalLine, new Vector3(0, goalLineHeight, 0), Quaternion.identity).transform;
     }
 
     public void IncreaseCamSize() {
-        if (sizeIndex + 1 >= camSizes.Length) {
-            return;
-        }
+        if (sizeIndex + 1 >= camSizes.Length) return;
         cam.orthographicSize = camSizes[++sizeIndex];
         float dist2Btm = platform.transform.position.y - btmPos;
         cam.transform.position += new Vector3(0, dist2Btm - platformDistFromBtm, 0);
@@ -42,8 +38,7 @@ public class CamController : MonoBehaviour
         targetToHeightRatio *= 1.1f;
         gm.generateHeight2ScreenH *= 1.1f;
         goalLineInstance.position = new Vector3(tpos.x, goalLineHeight, 0);
-        timer.AddTime(10);
-        gm.RefillBlocks(10);
+        gm.UpdateLevelSettings();
     }
 
     public Vector3 CamRatioHeight(float ratio) {
