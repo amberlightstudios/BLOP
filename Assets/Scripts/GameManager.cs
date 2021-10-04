@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         // (BACKLOG for post jam): add countdown before init timer 
         // TODO: create blit tutorial before starting
         timer.StartTimer();
-        InvokeRepeating(nameof(Score), 0.5f, 1f);
+        // InvokeRepeating(nameof(Score), 0.5f, 1f);
     }
 
     void Update()
@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
     int score = 0;
     int baseScore = 0;
     float scoreMultiplier = 1f;
-    int Score() {
+    public int Score() {
         int scoreCur = baseScore;
         foreach (GameObject block in GameObject.FindGameObjectsWithTag("Block")) {
             if (block.transform.position.y < cam.btmPos) Destroy(block);

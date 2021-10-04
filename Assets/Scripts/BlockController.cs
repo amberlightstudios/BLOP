@@ -54,6 +54,14 @@ public class BlockController : MonoBehaviour
             gm.SwitchToNextBlock();
     }
 
+    bool isScored = false;
+    private void OnCollisionStay2D(Collision2D other) {
+        if (!isScored && rb.velocity.magnitude < 0.5f) {
+            gm.Score();
+            isScored = true;
+        }
+    }
+
     [HideInInspector]
     public bool isSuspending = true;
     void Suspend() 
