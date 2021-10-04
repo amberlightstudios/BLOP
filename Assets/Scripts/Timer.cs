@@ -19,6 +19,7 @@ public class Timer : MonoBehaviour
         if (timeStart <= 0) {
             StopTimer();
             // TODO: End level (Time's Up! Final Score) need a gm instance
+            FindObjectOfType<AudioManager>().Play("GameOver");
         }
         if (!active) return;
         timeStart -= Time.deltaTime;

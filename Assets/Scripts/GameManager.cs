@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake() {
         cam = Camera.main.GetComponent<CamController>();
-        timer = GameObject.Find("TimerComponent").GetComponent<Timer>();
+        timer = GetComponent<Timer>();
     }
 
     private void Start() {
@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.DownArrow)) {
             currentBlock.Release();
+            FindObjectOfType<AudioManager>().Play("Drop");
         }
         else if (currentBlock.isSuspending) {
             if (Input.GetKey(KeyCode.LeftArrow)) {
@@ -125,22 +126,20 @@ public class GameManager : MonoBehaviour
                 scoreCur += 100;
             }
         }
+
         if (score < scoreCur) {
+            FindObjectOfType<AudioManager>().Play("AddToScore");
             score = scoreCur;
             scoreLabel.text = score.ToString();
         }
         return score;
     }
 
-    public void ChangeScore(int changedAmount) {
-        score += changedAmount;
-        scoreLabel.text = score.ToString();
-    }
-
     // TODO: figure out a fair amount to increase the new level by each turn and time   
     public void UpdateLevelSettings()
     {
         currentLevel++;
+        FindObjectOfType<AudioManager>().Play("NextLevel");
 
         RefillBlocks(5 * currentLevel);
         timer.AddTime(30 * currentLevel);

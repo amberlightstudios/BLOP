@@ -6,7 +6,6 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
 
-    // Start is called before the first frame update
     void Awake()
     {
         foreach (Sound s in sounds) {
@@ -15,12 +14,6 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     // This plays the audio with its name being "name"
