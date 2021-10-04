@@ -5531,8 +5531,8 @@ PrefabInstance:
       value: UI
       objectReference: {fileID: 0}
     - target: {fileID: 4412525554423590346, guid: 2a5503ed7208e734282011dd0db59146, type: 3}
-      propertyPath: m_Text
-      value: Level 0
+      propertyPath: m_FontData.m_MaxSize
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a5503ed7208e734282011dd0db59146, type: 3}
