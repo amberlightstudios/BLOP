@@ -16,7 +16,6 @@ public class Timer : MonoBehaviour
 	
 	void Update ()
     {
-
         if (timeStart <= 0 && active) {
             StopTimer();
             // TODO: End level (Time's Up! Final Score) need a gm instance
