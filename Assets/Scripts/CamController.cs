@@ -30,7 +30,10 @@ public class CamController : MonoBehaviour
     }
 
     public void IncreaseCamSize() {
-        if (sizeIndex + 1 >= camSizes.Length) return;
+        if (sizeIndex + 1 >= camSizes.Length) {
+            gm.EndGame();
+            return;
+        }
         cam.orthographicSize = camSizes[++sizeIndex];
         float dist2Btm = platform.transform.position.y - btmPos;
         cam.transform.position += new Vector3(0, dist2Btm - platformDistFromBtm, 0);
