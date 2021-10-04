@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     Timer timer;
 
     private void Awake() {
+        Time.timeScale = 1f;
         cam = Camera.main.GetComponent<CamController>();
         timer = GetComponent<Timer>();
     }
@@ -78,7 +79,7 @@ public class GameManager : MonoBehaviour
             Destroy(currentBlock.gameObject);
             currentBlock = Instantiate(blocks[0], blockGenerateLoc, Quaternion.identity);
         }
-        if (Input.GetKey(KeyCode.E)) {
+        if (Input.GetKeyDown(KeyCode.E)) {
             EndGame();
         }
         #endif
