@@ -35,8 +35,12 @@ public class CamController : MonoBehaviour
         float dist2Btm = platform.transform.position.y - btmPos;
         cam.transform.position += new Vector3(0, dist2Btm - platformDistFromBtm, 0);
         Vector3 tpos = goalLineInstance.position;
-        targetToHeightRatio *= 1.1f;
-        gm.generateHeight2ScreenH *= 1.1f;
+        if (targetToHeightRatio * 1.1f < 1) targetToHeightRatio *= 1.1f;
+        if (targetToHeightRatio + 0.2f < 1) {
+            gm.generateHeight2ScreenH = targetToHeightRatio + 0.2f;
+        } else {
+            gm.generateHeight2ScreenH = 0.9f;
+        }
         goalLineInstance.position = new Vector3(tpos.x, goalLineHeight, 0);
         gm.UpdateLevelSettings();
     }

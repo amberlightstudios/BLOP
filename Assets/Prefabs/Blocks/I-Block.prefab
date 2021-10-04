@@ -162,12 +162,12 @@ Rigidbody2D:
   m_UseAutoMass: 1
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.1
-  m_GravityScale: 1
+  m_AngularDrag: 0.025
+  m_GravityScale: 0.6
   m_Material: {fileID: 6200000, guid: 0af52d8097ac06be2a05de519821ebf0, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!114 &4218530547914217295
 MonoBehaviour:

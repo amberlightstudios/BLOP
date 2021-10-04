@@ -21,7 +21,7 @@ public class TargetController : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.layer == blocksLayer) {
             float speed = other.GetComponent<Rigidbody2D>().velocity.magnitude;
-            if (speed < 0.05f) {
+            if (speed < 0.05f && !other.GetComponent<BlockController>().isSuspending) {
                 Camera.main.GetComponent<CamController>().IncreaseCamSize();
             }
         }

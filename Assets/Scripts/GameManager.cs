@@ -117,13 +117,15 @@ public class GameManager : MonoBehaviour
 
     // TODO: make scoring system juicier - refer to notes (level)
     int score = 0;
+    int baseScore = 0;
+    float scoreMultiplier = 1f;
     int Score() {
-        int scoreCur = 0;
+        int scoreCur = baseScore;
         foreach (GameObject block in GameObject.FindGameObjectsWithTag("Block")) {
             if (block.transform.position.y < cam.btmPos) Destroy(block);
 
             if (!block.GetComponent<BlockController>().isSuspending) {
-                scoreCur += 100;
+                scoreCur += Mathf.RoundToInt(100 * scoreMultiplier);
             }
         }
 
@@ -140,9 +142,17 @@ public class GameManager : MonoBehaviour
     {
         currentLevel++;
         FindObjectOfType<AudioManager>().Play("NextLevel");
+        // Change the score and score multiplier
+        score += 500 * currentLevel;
+        baseScore += 500 * currentLevel;
+        scoreMultiplier += 0.37f;
+        if (currentBlock.isSuspending) {
+            currentBlock.transform.position = new Vector3(currentBlock.transform.position.x, 
+                                                        blockGenerateLoc.y, 0);
+        }
 
         RefillBlocks(5 * currentLevel);
-        timer.AddTime(30 * currentLevel);
+        timer.AddTime(15 * currentLevel);
         levelLabel.text = "Level " + currentLevel;
     }
 

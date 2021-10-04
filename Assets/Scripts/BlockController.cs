@@ -11,6 +11,10 @@ public class BlockController : MonoBehaviour
 
     [SerializeField]
     Sprite blockSprite;
+
+    public static float dropGravityScale = 0.2f;
+    float defaultGravity;
+
     GameManager gm;
     Rigidbody2D rb;
     Collider2D coll;
@@ -30,6 +34,7 @@ public class BlockController : MonoBehaviour
     private void Start() {
         dstLeft = transform.position - new Vector3(moveLeftDist, 0, 0);
         dstRight = transform.position + new Vector3(moveRightDist, 0, 0);
+        defaultGravity = rb.gravityScale;
     }
     
     private void Update() {
@@ -44,6 +49,7 @@ public class BlockController : MonoBehaviour
 // TODO: add floating text to indicate score adding when block sits
 // TODO: add negative numbers when the block falls out of screen
     private void OnCollisionEnter2D(Collision2D other) {
+        rb.gravityScale = defaultGravity;
         if (this.Equals(gm.currentBlock))
             gm.SwitchToNextBlock();
     }
@@ -59,7 +65,8 @@ public class BlockController : MonoBehaviour
     public void Release() 
     {
         isSuspending = false;
-        rb.velocity = new Vector2(0, rb.velocity.y);
+        rb.velocity = new Vector2(0, 0);
+        rb.gravityScale = dropGravityScale;
         rb.constraints = RigidbodyConstraints2D.None;
     }
 
