@@ -6,9 +6,11 @@ public class GameManager : MonoBehaviour
     public int currentLevel = 1;
 
     public GameObject preview;
+    public GameObject endMenu;
 // TODO: create levels for demo (BACKLOGGED to post-jam plans)
     public Text levelLabel;
     public Text scoreLabel;
+    public Text endScoreLabel;
     public Text blocksNumLabel;
 
     [SerializeField]
@@ -41,6 +43,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (timer.timeStart <= 0 || blocksNum <= 0) {
+            EndGame();
+        }
+
         if (Input.GetKeyDown(KeyCode.DownArrow) && currentBlock.isSuspending) {
             currentBlock.Release();
             FindObjectOfType<AudioManager>().Play("Drop");
@@ -71,6 +77,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I)) {
             Destroy(currentBlock.gameObject);
             currentBlock = Instantiate(blocks[0], blockGenerateLoc, Quaternion.identity);
+        }
+        if (Input.GetKey(KeyCode.E)) {
+            EndGame();
         }
         #endif
     }
@@ -171,7 +180,8 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         Time.timeScale = 0;
-        Debug.Log("Message! : Your total score was ");
+        endMenu.SetActive(true);
+        endScoreLabel.text = score.ToString();
     }
 
     public void RefillBlocks(int refillNum) {
