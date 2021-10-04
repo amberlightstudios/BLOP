@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow)) {
+        if (Input.GetKeyDown(KeyCode.DownArrow) && currentBlock.isSuspending) {
             currentBlock.Release();
             FindObjectOfType<AudioManager>().Play("Drop");
         }
