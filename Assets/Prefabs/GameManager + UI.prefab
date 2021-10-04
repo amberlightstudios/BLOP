@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 2276013774431255079}
+  volSlider: {fileID: 4265051976840296724}
 --- !u!114 &222627181262723584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +98,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1674027770515106931}
     m_Modifications:
+    - target: {fileID: 2944198068990240447, guid: 2a5503ed7208e734282011dd0db59146, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4914984153324168461}
     - target: {fileID: 4412525553168727992, guid: 2a5503ed7208e734282011dd0db59146, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -250,3 +255,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 899982014096582028, guid: 2a5503ed7208e734282011dd0db59146, type: 3}
   m_PrefabInstance: {fileID: 1435353776086671275}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4265051976840296724 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2944198068990240447, guid: 2a5503ed7208e734282011dd0db59146, type: 3}
+  m_PrefabInstance: {fileID: 1435353776086671275}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
