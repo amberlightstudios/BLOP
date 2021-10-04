@@ -3,16 +3,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("UI")]
     public int currentLevel = 1;
 
-    public GameObject preview;
+    public GameObject startScreen;
+    public GameObject gameplayComponents;
     public GameObject endMenu;
-// TODO: create levels for demo (BACKLOGGED to post-jam plans)
+
+    public GameObject preview;
+
     public Text levelLabel;
     public Text scoreLabel;
     public Text endScoreLabel;
     public Text blocksNumLabel;
 
+    [Header("Gameplay")]
     [SerializeField]
     float rotateSpeed = 0.1f;
 
@@ -28,22 +33,29 @@ public class GameManager : MonoBehaviour
 
     CamController cam;
     Timer timer;
+    bool titleScreen = true;
 
-    private void Awake() {
+    void Awake() {
         Time.timeScale = 1f;
         cam = Camera.main.GetComponent<CamController>();
         timer = GetComponent<Timer>();
     }
 
-    private void Start() {
-        SwitchToNextBlock();
-        // (BACKLOG for post jam): add countdown before init timer 
-        // TODO: create blit tutorial before starting
-        timer.StartTimer();
-    }
-
     void Update()
     {
+        // (BACKLOG for post jam): add countdown before init timer 
+        if (titleScreen) {
+            if (Input.anyKey) {
+                startScreen.SetActive(false);
+                gameplayComponents.SetActive(true);
+                SwitchToNextBlock();
+                // Explain instructions and then when they drop start runing the timer
+                cam.EnableGoalLine();
+                timer.StartTimer();
+                titleScreen = false;
+            } else return;
+        } 
+
         if (timer.timeStart <= 0 || blocksNum <= 0) {
             EndGame();
         }
@@ -51,8 +63,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow) && currentBlock.isSuspending) {
             currentBlock.Release();
             FindObjectOfType<AudioManager>().Play("Drop");
-        }
-        else if (currentBlock.isSuspending) {
+        } else if (currentBlock.isSuspending) {
             if (Input.GetKey(KeyCode.LeftArrow)) {
                 currentBlock.transform.Rotate(0, 0, Time.deltaTime * rotateSpeed);
             } else if (Input.GetKey(KeyCode.RightArrow)) {
@@ -157,8 +168,7 @@ public class GameManager : MonoBehaviour
         scoreMultiplier += 0.37f;
         scoreLabel.text = score.ToString();
         if (currentBlock.isSuspending) {
-            currentBlock.transform.position = new Vector3(currentBlock.transform.position.x, 
-                                                        blockGenerateLoc.y, 0);
+            currentBlock.transform.position = new Vector3(currentBlock.transform.position.x, blockGenerateLoc.y, 0);
         }
 
         RefillBlocks(5 * currentLevel);

@@ -20,13 +20,21 @@ public class CamController : MonoBehaviour
 
     public float btmPos { get { return transform.position.y - cam.orthographicSize; } }
     float goalLineHeight { get { return btmPos + 2 * cam.orthographicSize * targetToHeightRatio; } }
+    Vector3 original;
 
     // Start is called before the first frame update
     void Awake()
     {
         cam = Camera.main;
         platformDistFromBtm = platform.transform.position.y - btmPos;
-        goalLineInstance = Instantiate(goalLine, new Vector3(0, goalLineHeight, 0), Quaternion.identity).transform;
+        goalLineInstance = Instantiate(goalLine, Vector3.zero, Quaternion.identity).transform;
+        original = goalLineInstance.localScale;
+        goalLineInstance.localScale = Vector3.zero;
+    }
+
+    public void EnableGoalLine()
+    {
+        goalLineInstance.localScale = original;
     }
 
     public void IncreaseCamSize() {
