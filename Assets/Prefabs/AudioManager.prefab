@@ -49,11 +49,11 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: ba753c32a2d6b6e458e9ab7f0722d613, type: 3}
-    volume: 0.6
+    volume: 0.15
     pitch: 1
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 50dbb30ff1e4266419f7d2f8b67179b4, type: 3}
-    volume: 1
+    volume: 0.2
     pitch: 1
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: a850ac337157d5f4ca8fea63d91c11f3, type: 3}
@@ -65,7 +65,7 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 7431c35aa853aa048b8d132b849b7beb, type: 3}
-    volume: 0.6
+    volume: 0.3
     pitch: 1
     source: {fileID: 0}
   - clip: {fileID: 0}

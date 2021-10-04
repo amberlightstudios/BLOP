@@ -16,9 +16,12 @@ public class Timer : MonoBehaviour
 	
 	void Update ()
     {
-        if (timeStart <= 0) {
+
+        if (timeStart <= 0 && active) {
             StopTimer();
             // TODO: End level (Time's Up! Final Score) need a gm instance
+            AudioSource BGM = Camera.main.GetComponent<AudioSource>();
+            BGM.Pause();
             FindObjectOfType<AudioManager>().Play("GameOver");
         }
         if (!active) return;
