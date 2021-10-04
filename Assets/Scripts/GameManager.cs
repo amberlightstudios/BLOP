@@ -52,8 +52,9 @@ public class GameManager : MonoBehaviour
                 // Explain instructions and then when they drop start runing the timer
                 cam.EnableGoalLine();
                 timer.StartTimer();
-                titleScreen = false;
-            } else return;
+                titleScreen = false;  
+            } 
+            return;
         } 
 
         if (timer.timeStart <= 0 || blocksNum <= 0) {
